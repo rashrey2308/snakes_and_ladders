@@ -3,24 +3,35 @@ player2_position=0
 mode=0
 
 def select_mode():
-    print('''This game supports two modes: 
+    global mode
+    mode = input('''This game supports two modes: 
     1. Auto Mode: In this mode the computer will generate a random number between 1 to 6 after you type \"Roll\"
     2. Manual Mode: In this mode you have to enter a number between 1 and 20
-    Enter 1 for Auto Mode and 2 for Manual Mode''')
-    mode=input()
-    if mode!='1' or mode!='2':
-        while(True):
-            mode=input("Invalid Input: Please enter 1 for Auto Mode and 2 for Manual Mode")
-            if mode=='1' or mode=='2':
-                break
-    mode=int(input)        
+    Enter 1 for Auto Mode and 2 for Manual Mode: ''')
+    while(True):
+        if mode=='1' or mode=='2':
+            break
+        mode=input("Invalid Input: Please enter 1 for Auto Mode and 2 for Manual Mode ")
+            
+    mode=int(mode)        
+
+def checkchoice(choice):
+    print(mode)
+    if mode==1:
+        while True:
+            if choice=='Roll':
+                return True
+            else:
+                print('Invalid input: Enter "Roll"')    
 
 def player_move(player_num):
     run=True
     while(run):
-        choice=input("Player ",player_num,":")
-        if mode==1:
-
+        print("Player ",player_num,":", end=" ")
+        choice=input()
+        choiceok=checkchoice(choice)
+        print(choiceok)
+        break
     pass    
 
 
@@ -36,7 +47,7 @@ if __name__ == "__main__":
     print("###### Let us start ######")
     
     if not(iswinner()) :
-        pass
+        player_move(1)
 
     else:
         if(player1_position==100):
